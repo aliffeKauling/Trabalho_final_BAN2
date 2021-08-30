@@ -1,0 +1,6 @@
+1-Cadastrar dormitórios (com o admin);
+2-Cadastrar reservas (com o funcionario);
+ 3-Buscar todas as reservas;
+4-Buscar todos os quartos cadastrados;
+5-Buscar a reserva de um hospede; (precisa passar o nome do hospede)
+6- update no consumo de uma reserva (passa id da reserva e objeto de update)

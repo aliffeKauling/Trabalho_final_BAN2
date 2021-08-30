@@ -1,0 +1,107 @@
+<mat-card class="example-card">
+  <mat-card-header>
+    <mat-card-title>Cadastro de Cliente</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <mat-card>
+      <form [formGroup]="userForm" >
+              <mat-form-field class="field-form">
+                <input matInput placeholder="Nome completo" formControlName="fullname" name="fullname" required>
+              </mat-form-field>
+              <mat-form-field class="field-form">
+                <input matInput placeholder="Email" formControlName="email" name="email" required>
+                <mat-error *ngIf="email.invalid && email.hasError('email')">E-mail inválido</mat-error>
+              </mat-form-field>
+              <mat-form-field class="field-form" appearance="fill">
+                <mat-label>Tipo</mat-label>
+                <mat-select formControlName="roles" name="roles" required>
+                  <mat-option value="HOSPEDE">
+                    HOSPEDE
+                  </mat-option>
+                  <mat-option value="ACOMPANHANTE">
+                    ACOMPANHANTE
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+              <mat-form-field class="field-form">
+                <input matInput placeholder="Número do CPF" formControlName="password" type="password" name="password" required>
+              </mat-form-field>
+              <mat-form-field class="field-form">
+                <input matInput placeholder="Repetir número do CPF" formControlName="repeatPassword" type="password" name="repeatPassword" required>
+                <mat-error *ngIf="repeatPassword.invalid && repeatPassword.hasError('passwordMatch')">Ambos devem ser idênticos</mat-error>
+              </mat-form-field>
+      </form>
+    </mat-card>
+  </mat-card-content>
+  <mat-card-actions >
+<div style="text-align: end;">
+  <button mat-raised-button (click)="register()" color="primary">Cadastrar</button>
+</div>
+    <div>
+      <span>Volte para área página inicial <a [routerLink]="['/auth/login']">aqui</a>.</span>
+    </div>
+  </mat-card-actions>
+</mat-card>
+
+<!-- <mat-card class="example-card">
+  <mat-card-header>
+    <mat-card-title>Cadastro de Cliente</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <form class="example-form">
+      <table cellspacing="0" [formGroup]="userForm">
+        <tr>
+          <td>
+            <mat-form-field>
+              <input matInput placeholder="Nome completo" formControlName="fullname" name="fullname" required>
+            </mat-form-field>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <mat-form-field>
+              <input matInput placeholder="Email" formControlName="email" name="email" required>
+              <mat-error *ngIf="email.invalid && email.hasError('email')">E-mail inválido</mat-error>
+            </mat-form-field>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <mat-form-field appearance="fill">
+              <mat-label>Tipo</mat-label>
+              <mat-select formControlName="role" name="role" required>
+                <mat-option [value]="HOSPEDE">
+                  HOSPEDE
+                </mat-option>
+                <mat-option [value]="ACOMPANHANTE">
+                  ACOMPANHANTE
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <mat-form-field>
+              <input matInput placeholder="Número do CPF" formControlName="password" type="password" name="password" required>
+            </mat-form-field>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <mat-form-field>
+              <input matInput placeholder="Repetir número do CPF" formControlName="repeatPassword" type="password" name="repeatPassword" required>
+              <mat-error *ngIf="repeatPassword.invalid && repeatPassword.hasError('passwordMatch')">Ambos devem ser idênticos</mat-error>
+            </mat-form-field>
+          </td>
+        </tr>
+      </table>
+    </form>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-raised-button (click)="register()" color="primary">Cadastrar</button>
+    <div>
+      <span>Volte para área página inicial <a [routerLink]="['/auth/login']">aqui</a>.</span>
+    </div>
+  </mat-card-actions>
+</mat-card> -->

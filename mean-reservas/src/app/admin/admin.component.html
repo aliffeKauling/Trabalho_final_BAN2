@@ -1,0 +1,64 @@
+
+
+<mat-card class="example-card">
+    <h1 style="margin: 30px;">Cadastro de Dormitório </h1>
+    
+      <mat-form-field class="field-form-metade" appearance="fill">
+        <mat-label>Status da Quarto</mat-label>
+        <mat-select placeholder="status" [(ngModel)]="dormitorio.status"  name="status" required>
+          <mat-option  value="OCUPADO">
+            OCUPADO
+          </mat-option>
+          <mat-option  value="VAZIO">
+            VAZIO
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+  
+      <mat-form-field appearance="fill" class="field-form-metade">
+        <input matInput placeholder="Número da porta" [(ngModel)]="dormitorio.numeroPorta" name="numeroPorta" required>
+      </mat-form-field>
+
+      <mat-form-field class="field-form">
+        <textarea matInput placeholder="Descrição" [(ngModel)]="dormitorio.descricao" name="descricao" required></textarea>
+      </mat-form-field>
+
+      <mat-form-field class="field-form-metade">
+        <input type="number" matInput placeholder="Quatidade camas de casal" [(ngModel)]="dormitorio.qtdaCamaCasal" name="qtdaCamaCasal" required>
+      </mat-form-field>
+
+      <mat-form-field class="field-form-metade">
+        <input type="number" matInput placeholder="Quatidade camas de solteiro" [(ngModel)]="dormitorio.qtdaCamaSolteiro" name="qtdaCamaSolteiro" required>
+      </mat-form-field> 
+
+      <mat-radio-group [(ngModel)]="dormitorio.suite" class="field-form-metade" aria-label="Tem Suíte?">
+        <mat-label>Tem Suíte?</mat-label>
+        <mat-radio-button class="margin-radio" value="1">Sim</mat-radio-button>
+        <mat-radio-button class="margin-radio" value="0">Não</mat-radio-button>
+      </mat-radio-group>
+
+      <mat-radio-group [(ngModel)]="dormitorio.banheira" class="field-form-metade" aria-label="Tem Banheira?">
+        <mat-label>Tem Banheira?</mat-label>
+        <mat-radio-button class="margin-radio"  value="1">Sim</mat-radio-button>
+        <mat-radio-button class="margin-radio" value="0">Não</mat-radio-button>
+      </mat-radio-group>
+      <div style="text-align: end;">
+        <button mat-raised-button (click)="salvarDormitorio()" color="primary">Cadastrar</button>
+      </div>
+</mat-card>
+<mat-card>
+  <h2>Lista de dormitórios</h2>
+  <div *ngFor="let item of dormitorios; let i = index">
+    <mat-card>
+      <mat-form-field>
+        <input matInput  placeholder="Status" [value]="item.status" name="status2" disabled>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="Número" [value]="item.numeroPorta" name="porta" disabled>
+      </mat-form-field>
+     <mat-form-field class="field-form-metade">
+       <input matInput placeholder="Descrição" [value]="item.descricao" name="descricao2" disabled>
+     </mat-form-field>
+    </mat-card>
+  </div> 
+</mat-card>

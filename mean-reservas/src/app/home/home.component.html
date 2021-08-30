@@ -1,0 +1,220 @@
+<h1 style="margin: 30px;">
+  Cadastro de reserva
+</h1>
+<mat-card class="example-card">
+  <form >
+    <mat-form-field class="field-form-25" appearance="fill">
+      <mat-label>Status da reserva</mat-label>
+      <mat-select placeholder="status" [(ngModel)]="reserva.status"  name="status" required>
+        <mat-option  value="ATIVA">
+          ATIVA
+        </mat-option>
+        <mat-option  value="CONCLUIDA">
+          CONCLUIDA
+        </mat-option>
+        <mat-option  value="CANCELADA">
+          CANCELADA
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field class="field-form-25" appearance="fill">
+      <mat-label>Selecione o dormitório</mat-label>
+      <mat-select placeholder="Selecione o dormitório" [(ngModel)]="reserva.dormitorio"  name="dormitorio" required>
+        <mat-option [title]="item.descricao" *ngFor="let item of dormitorios" [value]="item">
+          {{item.numeroPorta}} - {{item.status}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+
+    <mat-form-field class="field-form-25" appearance="fill">
+      <mat-label>Escolha uma data de início</mat-label>
+      <input matInput [matDatepicker]="picker" [(ngModel)]="reserva.dataHoraInicio" name="dataHoraInicio" required>
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker  #picker></mat-datepicker>
+    </mat-form-field>
+
+    <mat-form-field class="field-form-25" appearance="fill">
+      <mat-label>Escolha uma data de término</mat-label>
+      <input matInput [matDatepicker]="picker2" name="dataHoraFim" required>
+      <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+      <mat-datepicker #picker2></mat-datepicker>
+    </mat-form-field>
+
+<mat-card style="margin: 20px 0 20px 0;">
+  <mat-form-field class="field-form" >
+    <mat-label>Hospede</mat-label>
+    <input type="text"
+           matInput
+           [formControl]="myControl"
+           [matAutocomplete]="auto" required  name="hospedes">
+    <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn" >
+      <mat-option *ngFor="let option of hospedes" [value]="option">
+        {{option.fullname}}
+      </mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
+
+   <mat-form-field class="field-form" >
+    <mat-label>Acompanhantes</mat-label>
+    <input type="text"
+           placeholder=""
+           aria-label="Number2"
+           matInput
+           [formControl]="myControl2"
+           [matAutocomplete]="auto2" required name="acompanhantes">
+    <mat-autocomplete #auto2="matAutocomplete" [displayWith]="displayFn2">
+      <mat-option *ngFor="let option of acompanhantes" [value]="option">
+        {{option.fullname}}
+      </mat-option>
+    </mat-autocomplete>
+  </mat-form-field> 
+</mat-card>
+
+    <mat-card>
+      <h3>Checkin</h3>
+      <mat-form-field>
+        <input matInput type="number" placeholder="Diárias" [(ngModel)]="reserva.checkin.diariasReservadas" name="diariasReservadas" required>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput type="number" placeholder="Valor da diária" [(ngModel)]="reserva.checkin.valorDiaria" name="valorDiaria" required>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput type="number" placeholder="Diárias pagas" [(ngModel)]="reserva.checkin.diariasPagas" name="diariasPagas" required>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput type="number" placeholder="Total pago" [(ngModel)]="reserva.checkin.totalPagas" name="totalPagas" required>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput type="number" placeholder="Total previsto" [(ngModel)]="reserva.checkin.totalPrevisto" name="totalPrevisto" required>
+      </mat-form-field>
+    </mat-card>
+
+    <mat-card>
+      <h3>Freegobar</h3>
+      <mat-card>
+        <mat-form-field class="field-form-metade">
+          <input matInput placeholder="Descrição do produto" [(ngModel)]="consumo.descricao" name="descricao" required>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput type="number" placeholder="Estoque" [(ngModel)]="consumo.quantidade" name="quantidade" required>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput type="number" placeholder="Consumido" [(ngModel)]="consumo.quantidadeConsumida" name="quantidadeConsumida" required>
+        </mat-form-field>
+        <div style="text-align: end; margin: 2%;">
+          <button mat-raised-button (click)="incluirItemFreegobar()" color="primary">Incluir ao freegobar</button>
+        </div>
+      </mat-card>
+      
+      <h4>Itens do freegobar</h4>
+        <div *ngFor="let item of freegobar; let i = index">
+          <mat-card>
+            <mat-form-field class="field-form-metade">
+              <input matInput placeholder="Descrição do produto" [value]="item.descricao" name="descricao2" disabled>
+            </mat-form-field>
+            <mat-form-field>
+              <input matInput type="number" placeholder="Estoque" [value]="item.quantidade" name="quantidade2" disabled>
+            </mat-form-field>
+            <mat-form-field>
+              <input matInput type="number" placeholder="Consumido" [value]="item.quantidadeConsumida" name="quantidadeConsumida2" disabled>
+            </mat-form-field>
+            <button mat-raised-button (click)="excluirItemFreegobar(i)" color="primary">Excluir</button>
+          </mat-card>
+        </div> 
+    </mat-card>
+
+    <div style="text-align: end; margin: 2%;">
+      <button mat-raised-button (click)="salvarReserva()" color="primary">Salvar reserva</button>
+    </div>
+
+  </form>
+</mat-card>
+
+<mat-card class="example-card">
+  <h1 style="margin: 30px;">Lista de reservas</h1>
+  <mat-form-field class="example-full-width">
+    <mat-label>Busque por nome do hospede</mat-label>
+    <input type="text" matInput placeholder="" [(ngModel)]="search">
+    <mat-icon  matSuffix>search</mat-icon>
+  </mat-form-field>
+  <button mat-raised-button style="margin-left:20px" (click)="findReservas()" color="primary">Pesquisar</button>
+  <div *ngFor="let item of reservas; let i = index" style="margin-top: 15px;">
+    <mat-card>
+     <mat-form-field>
+       <input matInput placeholder="Status" [value]="item.status" disabled>
+     </mat-form-field>
+     <mat-form-field>
+       <input matInput type="number" placeholder="Quarto" [value]="item.dormitorio.length>0 ? item.dormitorio[0]['numeroPorta']:''" disabled>
+     </mat-form-field>
+     <mat-form-field  class="field-form-metade">
+       <input matInput type="text" placeholder="Hospede" [value]="item.hospede.length>0 ? item.hospede[0]['fullname']:''" disabled>
+     </mat-form-field>
+     <!-- <button mat-raised-button (click)="editarReserva(item)" color="primary">Editar</button> -->
+    </mat-card>
+    <mat-accordion>
+
+      <mat-expansion-panel (opened)="panelOpenState = true"
+                           (closed)="panelOpenState = false">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Itens do freegobar
+          </mat-panel-title>
+          <mat-panel-description>
+            Pressione para {{panelOpenState ? 'fechar' : 'abrir'}}
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        <mat-card>
+          <mat-form-field class="field-form-metade">
+            <input matInput placeholder="Descrição do produto" [(ngModel)]="consumo.descricao" name="descricao" required>
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput type="number" placeholder="Estoque" [(ngModel)]="consumo.quantidade" name="quantidade" required>
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput type="number" placeholder="Consumido" [(ngModel)]="consumo.quantidadeConsumida" name="quantidadeConsumida" required>
+          </mat-form-field>
+          <button mat-raised-button style="margin-left:20px" (click)="incluirItemFreegobarcheckout(item.consumo)" color="primary">Incluir ao freegobar</button>
+          
+          <div *ngFor="let item2 of item.consumo; let i = index">
+            <mat-card>
+              <mat-form-field class="field-form-metade">
+                <input matInput placeholder="Descrição do produto" [(ngModel)]="item2.descricao" name="descricao2" >
+              </mat-form-field>
+              <mat-form-field>
+                <input matInput type="number" placeholder="Estoque" [(ngModel)]="item2.quantidade" name="quantidade2" >
+              </mat-form-field>
+              <mat-form-field>
+                <input matInput type="number" placeholder="Consumido" [(ngModel)]="item2.quantidadeConsumida" name="quantidadeConsumida2" >
+              </mat-form-field>
+              <button mat-raised-button (click)="excluirItemFreegobarCheckout(item.consumo, i)" color="default">Excluir</button>
+            </mat-card>
+          </div> 
+          <div style="text-align: end; margin: 2%;">
+            <button mat-raised-button (click)="salvarFregobar(item)" color="primary">Salvar atualização do fregobar</button>
+          </div>
+        </mat-card>
+        <mat-card>
+          <h3>Checkout</h3>
+          <mat-form-field>
+            <input matInput type="number" placeholder="Diárias" [(ngModel)]="item.checkout.diariasPernoitadas" name="diariasPernoitadas" required>
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput type="number" placeholder="Valor total das diárias" [(ngModel)]="item.checkout.valorDiarias" name="valorDiarias" required>
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput type="number" placeholder="Valor total de consumo" [(ngModel)]="item.checkout.valorConsumo" name="valorConsumo" required>
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput type="number" placeholder="Descontos" [(ngModel)]="item.checkout.desconto" name="desconto" required>
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput type="number" placeholder="Total a pagar" [(ngModel)]="item.checkout.valorTotal" name="valorTotal" required>
+          </mat-form-field>
+            <button mat-raised-button style="margin-left:20px" (click)="salvarItensFcheckout(item)" color="primary">Salvar Checkout</button>
+        </mat-card>
+      </mat-expansion-panel>
+    </mat-accordion>
+  </div> 
+</mat-card> 

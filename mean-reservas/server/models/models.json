@@ -1,0 +1,74 @@
+[
+    {
+      "pessoa": {
+        "_id": "ObjectID",
+        "perfil": "ADMIN/FUNCIONARIO/HOSPEDE/ACOMPANHANTE",
+        "documento": "",
+        "nome": "",
+        "idade": 0,
+        "endereco": "",
+        "email": "",
+        "telefone": "",
+        "turno": ""
+      }
+    },
+    {
+      "reserva": {
+        "_id": "ObjectID",
+        "status": "ATIVA/CANCELADA/CONCLUIDA",
+        "dormitorio": "ObjectID",
+        "descricao": "",
+        "dataReserva": "",
+        "dataHoraInicio": "",
+        "dataHoraFim": "",
+        "idFuncionario": "ObjectID",
+        "idHospede": "ObjectID",
+        "acompanhantes": [],
+        "checkin":{
+          "dataCheckin":"",
+          "diariasPagas": 0,
+          "valorDiaria":0.0,
+          "totalPagas":0.0,
+          "dataPagamento":"" 
+        },
+        "checkout": {
+          "desconto": 0,
+          "diarias": 0,
+          "valorDiarias": 0,
+          "valorConsumo": 0,
+          "valorTotal": 0,
+          "formaDePagamento": "",
+          "dataPagamento": ""
+        },
+        "consumo": [
+          {
+            "dataConsumo": "",
+            "item": [
+              {
+                "descricao": "",
+                "quantidade": 0,
+                "quantidadeConsumida": 0
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "dormitorio": {
+        "numeroPorta": "",
+        "hashFechadura": "",
+        "descricao": "",
+        "arranjo": "",
+        "qtdaCamaCasal": 0,
+        "qtdaCamaSolteiro": 0,
+        "suite": "",
+        "banheira": "",
+        "banheiros":0,
+        "tv": "",
+        "tipoVentilacao": "",
+        "status": "OCUPADO/HIGIENIZANDO/VAZIO",
+        "idAdmin": "ObjectId"
+      }
+    }
+  ]
